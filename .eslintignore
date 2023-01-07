@@ -1,0 +1,7 @@
+next.config.js
+yarn.lock
+**/*.scss
+public
+package.json
+README.md
+.eslintrc.json
