@@ -1,0 +1,58 @@
+@use "../../../styles/theme/colors.scss";
+@use "../../../styles/theme/typography.scss";
+
+.label {
+  display: flex;
+  flex-direction: column;
+
+  .labelText {
+    @include typography.body-2;
+    color: colors.$blue;
+    opacity: 0.4;
+    text-transform: lowercase;
+    margin-bottom: 8px;
+  }
+
+  .inputWrapper {
+    position: relative;
+
+    .input {
+      @include typography.text-1;
+      color: colors.$blue;
+      padding: 15px 16px 19px 16px;
+
+      background: colors.$light;
+      border-radius: 10px;
+
+      border: none;
+
+      width: 100%;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &[type="number"] {
+        -moz-appearance: textfield;
+      }
+    }
+
+    .arrowsWrapper {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      right: 16px;
+      top: 0;
+      bottom: 0;
+
+      .arrowButton {
+        padding: 3px;
+        padding-bottom: 4.5px;
+      }
+    }
+  }
+}

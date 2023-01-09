@@ -1,0 +1,52 @@
+@use "./sizes.scss";
+@use "./colors.scss";
+@use "./breakpoints.scss";
+
+$primary-font: var(--primary-font);
+
+$kumbh-sans-font: var(--kumbh-sans-font);
+$roboto-slab-font: var(--roboto-slab-font);
+$space-mono-font: var(--space-mono-font);
+
+@mixin heading-logo {
+  font-weight: 700;
+  font-size: sizes.px(32);
+  line-height: sizes.px(40);
+}
+
+@mixin h2 {
+  font-weight: 700;
+  font-size: sizes.px(28);
+  line-height: sizes.px(34);
+}
+
+@mixin h4 {
+  font-weight: 700;
+  font-size: sizes.px(13);
+  line-height: sizes.px(16);
+  letter-spacing: 5px;
+}
+
+@mixin text-1 {
+  font-weight: 700;
+  font-size: sizes.px(14);
+  line-height: sizes.px(17);
+}
+
+@mixin body-2 {
+  font-weight: 700;
+  font-size: sizes.px(12);
+  line-height: sizes.px(15);
+}
+
+@mixin body-3 {
+  font-weight: 700;
+  font-size: sizes.px(15);
+  line-height: sizes.px(19);
+}
+
+@mixin body-4 {
+  font-weight: 700;
+  font-size: sizes.px(16);
+  line-height: sizes.px(20);
+}

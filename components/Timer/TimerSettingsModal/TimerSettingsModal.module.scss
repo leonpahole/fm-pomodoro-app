@@ -1,0 +1,176 @@
+@use "../../../styles/theme/colors.scss";
+@use "../../../styles/theme/typography.scss";
+@use "../../../styles/theme/sizes.scss";
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(10, 12, 28, 0.5);
+
+  mix-blend-mode: normal;
+
+  .modal {
+    background: colors.$white;
+    border-radius: 25px;
+
+    position: absolute;
+
+    $paddingLeft: 40px;
+    $paddingRight: 38px;
+
+    margin: 46px 24px;
+    padding: 34px $paddingRight 59px $paddingLeft;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      .h2 {
+        @include typography.h2;
+        color: colors.$dark;
+      }
+    }
+
+    .separator {
+      margin-top: 32px;
+      margin-left: -$paddingLeft;
+      margin-right: -$paddingRight;
+    }
+
+    div[role="group"] {
+      .legend {
+        @include typography.h4;
+        color: colors.$dark;
+        text-transform: uppercase;
+      }
+    }
+
+    .timeFieldSet {
+      .legend {
+        margin-bottom: 22px;
+      }
+
+      .inputWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .input {
+          flex-basis: sizes.px(140);
+          flex-grow: 1;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    .fontFieldSet {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .inputWrapper {
+        display: flex;
+        gap: 16px;
+
+        .option {
+          background-color: colors.$light;
+          color: colors.$blue;
+
+          padding: 9px 10px 11px 10px;
+
+          &.active {
+            background-color: colors.$dark;
+            color: colors.$white;
+          }
+
+          &.kumbhSansFont {
+            font-family: typography.$kumbh-sans-font;
+            @include typography.body-3;
+          }
+
+          &.robotoSlabFont {
+            font-family: typography.$roboto-slab-font;
+            @include typography.body-3;
+            font-weight: 400;
+          }
+
+          &.spaceMonoFont {
+            font-family: typography.$space-mono-font;
+            @include typography.body-3;
+          }
+        }
+      }
+    }
+
+    .colorFieldSet {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .inputWrapper {
+        display: flex;
+        gap: 16px;
+
+        .option {
+          padding: 16px 13px 15px 14px;
+
+          .themeSelected {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+          }
+
+          &.active {
+            .themeSelected {
+              display: initial;
+            }
+          }
+
+          &.themeRed {
+            background-color: colors.$themeRed;
+          }
+
+          &.themeBlue {
+            background-color: colors.$themeBlue;
+          }
+
+          &.themePurple {
+            background-color: colors.$themePurple;
+          }
+        }
+      }
+    }
+
+    .submitButton {
+      background-color: colors.$primary;
+      border-radius: 26.5px;
+      padding: 21px 47px 16px 47px;
+      @include typography.body-4;
+      color: colors.$white;
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+
+      transform: translateY(50%);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@use "../../styles/theme/typography.scss";
+@use "../../styles/theme/colors.scss";
+
+.heading {
+  width: 100%;
+  text-align: center;
+
+  padding-top: 48px;
+
+  .logo {
+    @include typography.heading-logo;
+    color: colors.$grey;
+    text-transform: lowercase;
+  }
+}

@@ -1,0 +1,34 @@
+@use "../../../styles/theme/colors.scss";
+@use "../../../styles/theme/typography.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+
+  .pillWrapper {
+    margin-top: 45px;
+    background-color: colors.$dark;
+    border-radius: 31.5px;
+
+    padding: 8px 7px;
+
+    @include typography.text-1;
+    text-transform: lowercase;
+
+    display: flex;
+
+    .pill {
+      color: colors.$grey;
+      opacity: 0.4;
+
+      padding: 19px 25px 15px 26px;
+      border-radius: 26.5px;
+
+      &.active {
+        color: colors.$blue;
+        opacity: 1;
+        background: colors.$primary;
+      }
+    }
+  }
+}

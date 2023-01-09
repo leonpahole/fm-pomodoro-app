@@ -1,0 +1,36 @@
+@use "./sizes.scss";
+
+$screen-sm-min: sizes.px(480);
+$screen-md-min: sizes.px(768);
+$screen-lg-min: sizes.px(1024);
+$screen-xl-min: sizes.px(1200);
+
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+@mixin rwd($screen) {
+  @media (min-width: $screen) {
+    @content;
+  }
+}

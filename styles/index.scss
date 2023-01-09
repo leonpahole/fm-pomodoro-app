@@ -1,0 +1,12 @@
+@use "./css-reset.scss";
+@use "./theme/colors.scss";
+@use "./theme/typography.scss";
+
+body {
+  min-width: 320px;
+  width: auto !important;
+  width: 320px;
+
+  background-color: colors.$blue;
+  font-family: typography.$primary-font;
+}

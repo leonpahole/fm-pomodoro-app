@@ -1,0 +1,9 @@
+@use "../../../styles/theme/colors.scss";
+
+.separator {
+  margin: 24px 0;
+
+  height: 1px;
+  color: colors.$lightGrey;
+  opacity: 0.3;
+}
