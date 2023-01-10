@@ -1,0 +1,53 @@
+@use "../../../../styles/theme/typography.scss";
+@use "../../../../styles/theme/colors.scss";
+
+.colorFieldSet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .legend {
+    @include typography.h4;
+    color: colors.$dark;
+    text-transform: uppercase;
+  }
+
+  .inputWrapper {
+    display: flex;
+    gap: 16px;
+
+    .option {
+      padding: 16px 13px 15px 14px;
+
+      .themeSelected {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+
+      &.selected {
+        .themeSelected {
+          display: initial;
+        }
+      }
+
+      &.themeRed {
+        background-color: colors.$themeRed;
+      }
+
+      &.themeBlue {
+        background-color: colors.$themeBlue;
+      }
+
+      &.themePurple {
+        background-color: colors.$themePurple;
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@use "../../../../styles/theme/colors.scss";
+@use "../../../../styles/theme/typography.scss";
+
+.fontFieldSet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .legend {
+    @include typography.h4;
+    color: colors.$dark;
+    text-transform: uppercase;
+  }
+
+  .inputWrapper {
+    display: flex;
+    gap: 16px;
+
+    .option {
+      background-color: colors.$light;
+      color: colors.$blue;
+
+      padding: 9px 10px 11px 10px;
+
+      &.selected {
+        background-color: colors.$dark;
+        color: colors.$white;
+      }
+
+      &.kumbhSansFont {
+        font-family: typography.$kumbh-sans-font;
+        @include typography.body-3;
+      }
+
+      &.robotoSlabFont {
+        font-family: typography.$roboto-slab-font;
+        @include typography.body-3;
+        font-weight: 400;
+      }
+
+      &.spaceMonoFont {
+        font-family: typography.$space-mono-font;
+        @include typography.body-3;
+      }
+    }
+  }
+}

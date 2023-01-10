@@ -1,20 +1,15 @@
 import type { AppProps } from "next/app";
+import Modal from "react-modal";
 import {
   Font,
   kumbhSansFont,
   robotoSlabFont,
   spaceMonoFont,
-  setDefaultFont,
 } from "../utils/font-family.utils";
 import "../styles/index.scss";
-import { setDefaultColorTheme } from "../utils/color-theme";
+import "../utils/timer-settings.utils";
 
-if (typeof window !== "undefined") {
-  window.onload = () => {
-    setDefaultFont();
-    setDefaultColorTheme();
-  };
-}
+Modal.setAppElement("#modals");
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

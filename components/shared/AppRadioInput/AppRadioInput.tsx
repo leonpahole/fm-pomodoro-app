@@ -4,16 +4,20 @@ import appRadioInputStyles from "./AppRadioInput.module.scss";
 interface IProps {
   id: string;
   label: string;
+  isSelected: boolean;
+  onSelect(): void;
   contentClassName?: string;
-  activeContentClassName?: string;
+  selectedContentClassName?: string;
   children?: React.ReactNode;
 }
 
 export const AppRadioInput = ({
   id,
   label,
+  isSelected,
+  onSelect,
   contentClassName,
-  activeContentClassName = "",
+  selectedContentClassName = "",
   children,
 }: IProps) => {
   return (
@@ -22,13 +26,14 @@ export const AppRadioInput = ({
         type="radio"
         id={id}
         value="small"
-        checked
+        checked={isSelected}
         className={appRadioInputStyles.radio}
+        onChange={onSelect}
       />
       <div
         aria-label={label}
         className={clsx(appRadioInputStyles.content, contentClassName, {
-          [activeContentClassName]: true,
+          [selectedContentClassName]: isSelected,
         })}
       >
         {children}

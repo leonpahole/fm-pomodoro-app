@@ -27,7 +27,7 @@ const SharedColors: Omit<ColorThemeColors, "primary"> = {
   themePurple: "#D881F8",
 };
 
-type ColorTheme = "red" | "blue" | "purple";
+export type ColorTheme = "red" | "blue" | "purple";
 
 const ColorsThemeColorsMap: Record<ColorTheme, ColorThemeColors> = {
   red: {
@@ -52,8 +52,4 @@ export const setColorTheme = (theme: ColorTheme) => {
       colorValue
     );
   });
-};
-
-export const setDefaultColorTheme = () => {
-  setColorTheme("red");
 };
