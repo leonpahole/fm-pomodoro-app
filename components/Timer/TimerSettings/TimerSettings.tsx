@@ -8,7 +8,7 @@ export const TimerSettings = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <>
+    <section className={timerSettingsStyles.wrapper}>
       <button
         className={timerSettingsStyles.button}
         aria-label="Open settings"
@@ -25,6 +25,6 @@ export const TimerSettings = () => {
           setIsOpen(false);
         }}
       />
-    </>
+    </section>
   );
 };

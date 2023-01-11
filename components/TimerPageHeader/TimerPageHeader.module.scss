@@ -1,11 +1,16 @@
 @use "../../styles/theme/typography.scss";
 @use "../../styles/theme/colors.scss";
+@use "../../styles/theme/breakpoints.scss";
 
 .heading {
   width: 100%;
   text-align: center;
 
-  padding-top: 48px;
+  padding-top: 32px;
+
+  @include breakpoints.md {
+    padding-top: 48px;
+  }
 
   .logo {
     @include typography.heading-logo;

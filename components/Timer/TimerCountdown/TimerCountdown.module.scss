@@ -1,0 +1,102 @@
+@use "../../../styles/theme/colors.scss";
+@use "../../../styles/theme/sizes.scss";
+@use "../../../styles/theme/typography.scss";
+@use "../../../styles/theme/breakpoints.scss";
+
+@mixin midPosition($offsetPx) {
+  top: #{$offsetPx}px;
+  bottom: #{$offsetPx}px;
+  left: #{$offsetPx}px;
+  right: #{$offsetPx}px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+
+  .outerCircle {
+    background: linear-gradient(315deg, #2e325a 0%, #0e112a 100%);
+    box-shadow: -50px -50px 100px #272c5a, 50px 50px 100px #121530;
+
+    margin: 0 16px;
+
+    max-width: sizes.px(300);
+    max-height: sizes.px(300);
+
+    @include breakpoints.md {
+      max-width: sizes.px(410);
+      max-height: sizes.px(410);
+    }
+
+    width: 100%;
+    height: 100%;
+
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    position: relative;
+
+    .innerCircle {
+      background-color: colors.$dark;
+      border-radius: 50%;
+
+      position: absolute;
+
+      @include midPosition(16.1);
+
+      @include breakpoints.md {
+        @include midPosition(22);
+      }
+
+      .progressCircle {
+        position: absolute;
+
+        @include midPosition(9.8);
+
+        @include breakpoints.md {
+          @include midPosition(13.5);
+        }
+
+        border-radius: 50%;
+
+        background: conic-gradient(colors.$primary 120deg, transparent 0deg);
+
+        .statusCircle {
+          position: absolute;
+
+          @include midPosition(9.8);
+
+          @include breakpoints.md {
+            @include midPosition(13.5);
+          }
+
+          border-radius: 50%;
+
+          background: colors.$dark;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          gap: 12px;
+          @include breakpoints.md {
+            gap: 19px;
+          }
+
+          .time {
+            @include typography.large-text;
+            color: colors.$grey;
+          }
+
+          .button {
+            @include typography.body-4;
+            text-transform: uppercase;
+            color: colors.$grey;
+          }
+        }
+      }
+    }
+  }
+}

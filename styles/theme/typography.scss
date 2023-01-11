@@ -49,4 +49,23 @@ $space-mono-font: var(--space-mono-font);
   font-weight: 700;
   font-size: sizes.px(16);
   line-height: sizes.px(20);
+  letter-spacing: 15px;
+
+  @include breakpoints.md {
+    font-size: sizes.px(14);
+    line-height: sizes.px(17);
+    letter-spacing: 13.125px;
+  }
+}
+
+@mixin large-text {
+  font-weight: 700;
+
+  font-size: sizes.px(80);
+  line-height: sizes.px(99);
+
+  @include breakpoints.md {
+    font-size: sizes.px(100);
+    line-height: sizes.px(124);
+  }
 }

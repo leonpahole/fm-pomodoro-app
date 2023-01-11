@@ -22,6 +22,12 @@ export default function App({ Component, pageProps }: AppProps) {
             --${Font.ROBOTO_SLAB}: ${robotoSlabFont.style.fontFamily};
             --${Font.SPACE_MONO}: ${spaceMonoFont.style.fontFamily};
           }
+          
+          #__next {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
         `}
       </style>
       <Component {...pageProps} />

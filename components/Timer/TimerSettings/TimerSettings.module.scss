@@ -1,3 +1,13 @@
-.button {
-  margin-bottom: 56px;
+@use "../../../styles/theme/breakpoints.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 18px;
+  margin-bottom: 48px;
+
+  @include breakpoints.md {
+    margin-bottom: 56px;
+  }
 }
