@@ -23,6 +23,12 @@ export const useCountdown = (timeSettings: TimerSettingsTime) => {
 
   const roundsCount = useRef<number>(0);
 
+  const alarmSound = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    alarmSound.current = new Audio("/alarm.wav");
+  }, []);
+
   const getProgressPercent = useCallback(() => {
     if (phaseRef.current && timeSecondsRef.current != null) {
       const totalSeconds = savedTimeSettings.current[phaseRef.current] * 60;
@@ -73,6 +79,12 @@ export const useCountdown = (timeSettings: TimerSettingsTime) => {
 
   const onRoundEnd = useCallback(() => {
     pause();
+    try {
+      alarmSound.current?.play();
+    } catch (e) {
+      console.log(e);
+    }
+
     if (roundsCount.current < RoundsForLongBreak) {
       changePhase(phaseRef.current === "pomodoro" ? "shortBreak" : "pomodoro");
       if (phaseRef.current === "shortBreak") {
@@ -88,7 +100,7 @@ export const useCountdown = (timeSettings: TimerSettingsTime) => {
     dispose();
     interval.current = setInterval(() => {
       const timeRemaining = timeSecondsRef.current! - 1;
-      if (timeRemaining <= 0) {
+      if (timeRemaining <= 55) {
         setTimeSeconds(0);
         onRoundEnd();
       } else {
