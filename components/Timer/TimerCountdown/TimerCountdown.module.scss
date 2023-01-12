@@ -60,8 +60,6 @@
 
         border-radius: 50%;
 
-        background: conic-gradient(colors.$primary 120deg, transparent 0deg);
-
         .statusCircle {
           position: absolute;
 
@@ -94,6 +92,12 @@
             @include typography.body-4;
             text-transform: uppercase;
             color: colors.$grey;
+
+            letter-spacing: 15px;
+
+            @include breakpoints.md {
+              letter-spacing: 13.125px;
+            }
           }
         }
       }

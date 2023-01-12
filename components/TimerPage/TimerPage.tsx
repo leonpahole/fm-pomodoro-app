@@ -6,7 +6,6 @@ export const TimerPage = () => {
   return (
     <>
       <Head>
-        <title>Pomodoro timer</title>
         <meta
           name="description"
           content="An amazing Pomodoro technique timer"

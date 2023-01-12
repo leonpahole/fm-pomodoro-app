@@ -14,6 +14,9 @@ export interface TimerSettings {
   color: ColorTheme;
 }
 
+export type TimerRunningStatus = "running" | "paused";
+export type TimerPhase = keyof TimerSettingsTime;
+
 const DefaultTimerSettings: TimerSettings = {
   color: "red",
   font: Font.KUMBH_SANS,

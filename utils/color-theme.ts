@@ -44,8 +44,13 @@ const ColorsThemeColorsMap: Record<ColorTheme, ColorThemeColors> = {
   },
 };
 
-export const setColorTheme = (theme: ColorTheme) => {
+export const getColorTheme = (theme: ColorTheme): ColorThemeColors => {
   const colors = ColorsThemeColorsMap[theme];
+  return colors;
+};
+
+export const setColorTheme = (theme: ColorTheme) => {
+  const colors = getColorTheme(theme);
   Object.entries(colors).forEach(([colorName, colorValue]) => {
     document.documentElement.style.setProperty(
       `--color-${colorName}`,
