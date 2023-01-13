@@ -1,10 +1,10 @@
-import Head from "next/head";
 import { TimerCountdown } from "./TimerCountdown/TimerCountdown";
 import { TimerPhaseBar } from "./TimerPhaseBar/TimerPhaseBar";
 import { TimerSettings } from "./TimerSettings/TimerSettings";
 import styles from "./Timer.module.scss";
-import { useCountdown } from "../../hooks/useCountdown";
 import { useTimerSettings } from "../../utils/timer-settings.utils";
+import { usePomodoro } from "../../hooks/usePomodoro";
+import { TimerTitle } from "./TimerTitle/TimerTitle";
 
 export const Timer = () => {
   const timerSettings = useTimerSettings((s) => s.settings);
@@ -12,27 +12,20 @@ export const Timer = () => {
     changePhase,
     phase,
     timeString,
-    status,
+    runningStatus,
     startOrResume,
     pause,
     progressPercent,
-  } = useCountdown(timerSettings.time);
-
-  let title = "Pomodoro timer";
-  if (timeString != null) {
-    title = `${timeString} | ${title}`;
-  }
+  } = usePomodoro(timerSettings.time);
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <TimerTitle timeString={timeString} phase={phase} />
       <main className={styles.wrapper}>
         <TimerPhaseBar selectedPhase={phase} onSelect={changePhase} />
         <TimerCountdown
           timeString={timeString}
-          status={status}
+          runningStatus={runningStatus}
           onPause={pause}
           onStartOrResume={startOrResume}
           progressPercent={progressPercent}

@@ -7,7 +7,7 @@ import styles from "./TimerCountdown.module.scss";
 
 interface IProps {
   timeString: string | null;
-  status: TimerRunningStatus;
+  runningStatus: TimerRunningStatus;
   onPause(): void;
   onStartOrResume(): void;
   progressPercent: number;
@@ -15,7 +15,7 @@ interface IProps {
 
 export const TimerCountdown = ({
   timeString,
-  status,
+  runningStatus,
   onPause,
   onStartOrResume,
   progressPercent,
@@ -55,9 +55,9 @@ export const TimerCountdown = ({
               <button
                 className={styles.button}
                 type="button"
-                onClick={buttonMap[status].onClick}
+                onClick={buttonMap[runningStatus].onClick}
               >
-                {buttonMap[status].text}
+                {buttonMap[runningStatus].text}
               </button>
             </div>
           </div>
