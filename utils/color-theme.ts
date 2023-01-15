@@ -70,6 +70,6 @@ export const setColorTheme = (theme: ColorTheme) => {
 export const getDefaultColorThemeStyleString = (): string => {
   const colors = getColorTheme(DefaultTimerSettings.color);
   return Object.entries(colors)
-    .map(([colorName, colorValue]) => `--color-${colorName}: ${colorValue}`)
+    .map(([colorName, colorValue]) => `--color-${colorName}: ${colorValue};`)
     .join("\n");
 };
