@@ -15,12 +15,15 @@ import { TimerSettingsModalColorTheme } from "./TimerSettingsModalColorTheme/Tim
 import { TimerSettingsModalFont } from "./TimerSettingsModalFont/TimerSettingsModalFont";
 import { TimerSettingsModalTime } from "./TimerSettingsModalTime/TimerSettingsModalTime";
 
-interface IProps {
+export interface TimerSettingsModalProps {
   isOpen: boolean;
   onClose(): void;
 }
 
-export const TimerSettingsModal = ({ isOpen, onClose }: IProps) => {
+export const TimerSettingsModal = ({
+  isOpen,
+  onClose,
+}: TimerSettingsModalProps) => {
   const { settings: globalSettings, setSettings: setGlobalSettings } =
     useTimerSettings();
 

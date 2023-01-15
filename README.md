@@ -42,6 +42,7 @@ In this project, I was focusing on the logic of the app.
 
 - Used SVG to make an animated loader
 - Used a web worker, so the timer would also work when the tab is not in focus
+- Dynamically imported a Next.js component (the modal)
 - Switched theme using CSS variables
 
 ### Built with
