@@ -1,3 +1,5 @@
+import { DefaultTimerSettings } from "./timer-settings.utils";
+
 interface ColorThemeColors {
   primary: string;
   grey: string;
@@ -63,4 +65,11 @@ export const setColorTheme = (theme: ColorTheme) => {
       colorValue
     );
   });
+};
+
+export const getDefaultColorThemeStyleString = (): string => {
+  const colors = getColorTheme(DefaultTimerSettings.color);
+  return Object.entries(colors)
+    .map(([colorName, colorValue]) => `--color-${colorName}: ${colorValue}`)
+    .join("\n");
 };

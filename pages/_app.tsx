@@ -8,6 +8,7 @@ import {
 } from "../utils/font-family.utils";
 import "../styles/index.scss";
 import "../utils/timer-settings.utils";
+import { getDefaultColorThemeStyleString } from "../utils/color-theme";
 
 Modal.setAppElement("#modals");
 
@@ -21,6 +22,8 @@ export default function App({ Component, pageProps }: AppProps) {
             --${Font.KUMBH_SANS}: ${kumbhSansFont.style.fontFamily};
             --${Font.ROBOTO_SLAB}: ${robotoSlabFont.style.fontFamily};
             --${Font.SPACE_MONO}: ${spaceMonoFont.style.fontFamily};
+            
+            ${getDefaultColorThemeStyleString()} 
           }
           
           #__next {
