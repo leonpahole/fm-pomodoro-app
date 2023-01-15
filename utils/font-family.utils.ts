@@ -1,5 +1,4 @@
 import { Kumbh_Sans, Roboto_Slab, Space_Mono } from "@next/font/google";
-import { DefaultTimerSettings } from "./timer-settings.utils";
 
 export const kumbhSansFont = Kumbh_Sans({ subsets: ["latin"] });
 export const robotoSlabFont = Roboto_Slab({ subsets: ["latin"] });
@@ -26,5 +25,5 @@ export const setDefaultFont = () => {
 };
 
 export const getDefaultFontStyleString = (): string => {
-  return `--primary-font: var(--${DefaultTimerSettings.font});`;
+  return `--primary-font: var(--${Font.KUMBH_SANS});`;
 };
