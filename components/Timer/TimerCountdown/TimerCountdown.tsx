@@ -1,8 +1,5 @@
-import { getColorTheme } from "../../../utils/color-theme";
-import {
-  TimerRunningStatus,
-  useTimerSettings,
-} from "../../../utils/timer-settings.utils";
+import { TimerRunningStatus } from "../../../utils/timer-settings.utils";
+import { TimerProgressCircle } from "../TimerProgressCircle/TimerProgressCircle";
 import styles from "./TimerCountdown.module.scss";
 
 interface IProps {
@@ -20,9 +17,6 @@ export const TimerCountdown = ({
   onStartOrResume,
   progressPercent,
 }: IProps) => {
-  const colorTheme = useTimerSettings((s) => s.settings.color);
-  const colorPrimary = getColorTheme(colorTheme).primary;
-
   const buttonMap: Record<
     TimerRunningStatus,
     { text: string; onClick: () => void }
@@ -37,19 +31,12 @@ export const TimerCountdown = ({
     },
   };
 
-  const progressInDegrees = Math.round(progressPercent * 360);
-  const progressGradient = `conic-gradient(${colorPrimary} ${progressInDegrees}deg, transparent 0deg)`;
-
   return (
     <section className={styles.wrapper}>
       <div className={styles.outerCircle}>
         <div className={styles.innerCircle}>
-          <div
-            className={styles.progressCircle}
-            style={{
-              background: progressGradient,
-            }}
-          >
+          <div className={styles.progressCircle}>
+            <TimerProgressCircle progressPercent={progressPercent} />
             <div className={styles.statusCircle}>
               <p className={styles.time}>{timeString ?? ""}</p>
               <button
