@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import Modal from "react-modal";
 import {
   Font,
+  getDefaultFontStyleString,
   kumbhSansFont,
   robotoSlabFont,
   spaceMonoFont,
@@ -24,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
             --${Font.SPACE_MONO}: ${spaceMonoFont.style.fontFamily};
             
             ${getDefaultColorThemeStyleString()} 
+            ${getDefaultFontStyleString()}
           }
           
           #__next {
