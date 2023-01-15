@@ -1,16 +1,19 @@
-import Modal from "react-modal";
+import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
-import styles from "./TimerSettingsModal.module.scss";
+import { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
+import Modal from "react-modal";
 import CloseIcon from "../../../public/icon-close.svg";
+import {
+  TimerSettings,
+  TimerSettingsValidationSchema,
+  useTimerSettings,
+} from "../../../utils/timer-settings.utils";
 import { AppSeparator } from "../../shared/AppSeparator/AppSeparator";
+import styles from "./TimerSettingsModal.module.scss";
 import { TimerSettingsModalColorTheme } from "./TimerSettingsModalColorTheme/TimerSettingsModalColorTheme";
 import { TimerSettingsModalFont } from "./TimerSettingsModalFont/TimerSettingsModalFont";
 import { TimerSettingsModalTime } from "./TimerSettingsModalTime/TimerSettingsModalTime";
-import {
-  TimerSettings,
-  useTimerSettings,
-} from "../../../utils/timer-settings.utils";
 
 interface IProps {
   isOpen: boolean;
@@ -21,22 +24,22 @@ export const TimerSettingsModal = ({ isOpen, onClose }: IProps) => {
   const { settings: globalSettings, setSettings: setGlobalSettings } =
     useTimerSettings();
 
-  const [settings, setSettings] = useState<TimerSettings>(globalSettings);
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<TimerSettings>({
+    resolver: yupResolver(TimerSettingsValidationSchema),
+    defaultValues: globalSettings,
+  });
 
   useEffect(() => {
-    setSettings(globalSettings);
-  }, [globalSettings]);
+    reset(globalSettings);
+  }, [globalSettings, reset]);
 
-  const onSettingsPartChange = (val: Partial<TimerSettings>) => {
-    setSettings((s) => ({
-      ...s,
-      ...val,
-    }));
-  };
-
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setGlobalSettings(settings);
+  const onSubmit = (data: TimerSettings) => {
+    setGlobalSettings(data);
     onClose();
   };
 
@@ -57,24 +60,49 @@ export const TimerSettingsModal = ({ isOpen, onClose }: IProps) => {
 
       <AppSeparator className={styles.separator} />
 
-      <form onSubmit={onSubmit}>
-        <TimerSettingsModalTime
-          time={settings.time}
-          onChange={(time) => onSettingsPartChange({ time })}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="time"
+          control={control}
+          render={({ field }) => (
+            <TimerSettingsModalTime
+              onChange={field.onChange}
+              time={field.value}
+              errors={{
+                pomodoro: errors.time?.pomodoro?.message,
+                shortBreak: errors.time?.shortBreak?.message,
+                longBreak: errors.time?.longBreak?.message,
+              }}
+            />
+          )}
         />
 
         <AppSeparator />
 
-        <TimerSettingsModalFont
-          selectedFont={settings.font}
-          onSelect={(font) => onSettingsPartChange({ font })}
+        <Controller
+          name="font"
+          control={control}
+          render={({ field }) => (
+            <TimerSettingsModalFont
+              selectedFont={field.value}
+              onSelect={field.onChange}
+              error={errors.font?.message}
+            />
+          )}
         />
 
         <AppSeparator />
 
-        <TimerSettingsModalColorTheme
-          selectedColorTheme={settings.color}
-          onSelect={(color) => onSettingsPartChange({ color })}
+        <Controller
+          name="color"
+          control={control}
+          render={({ field }) => (
+            <TimerSettingsModalColorTheme
+              selectedColorTheme={field.value}
+              onSelect={field.onChange}
+              error={errors.color?.message}
+            />
+          )}
         />
 
         <button type="submit" className={styles.submitButton}>

@@ -5,9 +5,10 @@ import styles from "./TimerSettingsModalTime.module.scss";
 interface IProps {
   time: TimerSettingsTime;
   onChange(time: TimerSettingsTime): void;
+  errors: Record<keyof TimerSettingsTime, string | undefined>;
 }
 
-export const TimerSettingsModalTime = ({ time, onChange }: IProps) => {
+export const TimerSettingsModalTime = ({ time, onChange, errors }: IProps) => {
   const onPartialValueChange = (val: Partial<TimerSettingsTime>) => {
     onChange({
       ...time,
@@ -34,6 +35,7 @@ export const TimerSettingsModalTime = ({ time, onChange }: IProps) => {
           onChange={(pomodoro) => {
             onPartialValueChange({ pomodoro });
           }}
+          error={errors.pomodoro}
         />
         <AppNumberInput
           id="shortBreakTime"
@@ -43,6 +45,7 @@ export const TimerSettingsModalTime = ({ time, onChange }: IProps) => {
           onChange={(shortBreak) => {
             onPartialValueChange({ shortBreak });
           }}
+          error={errors.shortBreak}
         />
         <AppNumberInput
           id="longBreakTime"
@@ -52,6 +55,7 @@ export const TimerSettingsModalTime = ({ time, onChange }: IProps) => {
           onChange={(longBreak) => {
             onPartialValueChange({ longBreak });
           }}
+          error={errors.longBreak}
         />
       </div>
     </div>

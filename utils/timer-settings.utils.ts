@@ -1,3 +1,4 @@
+import * as yup from "yup";
 import create from "zustand";
 import { ColorTheme, setColorTheme } from "./color-theme";
 import { Font, setFont } from "./font-family.utils";
@@ -18,13 +19,44 @@ export type TimerRunningStatus = "running" | "paused";
 export type TimerPhase = keyof TimerSettingsTime;
 
 const DefaultTimerSettings: TimerSettings = {
-  color: "red",
+  color: ColorTheme.RED,
   font: Font.KUMBH_SANS,
   time: {
     pomodoro: 25,
     longBreak: 15,
     shortBreak: 5,
   },
+};
+
+const requiredTimeMessage = "Please enter a number";
+const outOfRangeTimeMessage = "Must be between 1 and 59";
+
+export const TimerSettingsValidationSchema = yup
+  .object({
+    font: yup.mixed<Font>().oneOf(Object.values(Font)),
+    color: yup.mixed<ColorTheme>().oneOf(Object.values(ColorTheme)),
+    time: yup.object({
+      pomodoro: yup
+        .number()
+        .required(requiredTimeMessage)
+        .min(1, outOfRangeTimeMessage)
+        .max(59, outOfRangeTimeMessage),
+      shortBreak: yup
+        .number()
+        .required(requiredTimeMessage)
+        .min(1, outOfRangeTimeMessage)
+        .max(59, outOfRangeTimeMessage),
+      longBreak: yup
+        .number()
+        .required(requiredTimeMessage)
+        .min(1, outOfRangeTimeMessage)
+        .max(59, outOfRangeTimeMessage),
+    }),
+  })
+  .required();
+
+const validateTimerSettings = (settings?: TimerSettings): boolean => {
+  return TimerSettingsValidationSchema.isValidSync(settings);
 };
 
 const LocalStorageKey = "__timerSettings";
@@ -40,7 +72,12 @@ const getSavedTimerSettings = (): TimerSettings | null => {
   }
 
   try {
-    return JSON.parse(settingsStr);
+    const settings = JSON.parse(settingsStr);
+    if (validateTimerSettings(settings)) {
+      return settings;
+    }
+
+    return null;
   } catch (e) {
     return null;
   }

@@ -14,39 +14,45 @@
     text-transform: uppercase;
   }
 
-  .inputWrapper {
+  .inputAndErrorWrapper {
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    align-items: flex-end;
 
-    .option {
-      padding: 16px 13px 15px 14px;
+    .inputWrapper {
+      display: flex;
+      gap: 16px;
 
-      .themeSelected {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-      }
+      .option {
+        padding: 16px 13px 15px 14px;
 
-      &.selected {
         .themeSelected {
-          display: initial;
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
         }
-      }
 
-      &.themeRed {
-        background-color: colors.$themeRed;
-      }
+        &.selected {
+          .themeSelected {
+            display: initial;
+          }
+        }
 
-      &.themeBlue {
-        background-color: colors.$themeBlue;
-      }
+        &.themeRed {
+          background-color: colors.$themeRed;
+        }
 
-      &.themePurple {
-        background-color: colors.$themePurple;
+        &.themeBlue {
+          background-color: colors.$themeBlue;
+        }
+
+        &.themePurple {
+          background-color: colors.$themePurple;
+        }
       }
     }
   }

@@ -67,3 +67,9 @@ $space-mono-font: var(--space-mono-font);
     line-height: sizes.px(124);
   }
 }
+
+@mixin small-text {
+  font-weight: 400;
+  font-size: sizes.px(10);
+  line-height: sizes.px(13);
+}

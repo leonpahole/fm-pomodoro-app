@@ -2,13 +2,19 @@ import clsx from "clsx";
 import styles from "./TimerSettingsModalFont.module.scss";
 import { AppRadioInput } from "../../../shared/AppRadioInput/AppRadioInput";
 import { Font } from "../../../../utils/font-family.utils";
+import { AppErrorText } from "../../../shared/AppErrorText/AppErrorText";
 
 interface IProps {
   selectedFont: Font;
   onSelect(font: Font): void;
+  error?: string;
 }
 
-export const TimerSettingsModalFont = ({ selectedFont, onSelect }: IProps) => {
+export const TimerSettingsModalFont = ({
+  selectedFont,
+  onSelect,
+  error,
+}: IProps) => {
   const fontsMap: Record<Font, { label: string; className: string }> = {
     "kumbh-sans-font": {
       label: "Select Kumbh Sans Font",
@@ -24,6 +30,8 @@ export const TimerSettingsModalFont = ({ selectedFont, onSelect }: IProps) => {
     },
   };
 
+  const errorTextId = `font-input-error`;
+
   return (
     <div
       role="group"
@@ -33,22 +41,29 @@ export const TimerSettingsModalFont = ({ selectedFont, onSelect }: IProps) => {
       <div id="font-legend" className={styles.legend}>
         Font
       </div>
-      <div className={styles.inputWrapper}>
-        {Object.entries(fontsMap).map(([font, settings]) => (
-          <AppRadioInput
-            key={font}
-            label={settings.label}
-            id={font}
-            contentClassName={clsx(styles.option, settings.className)}
-            selectedContentClassName={styles.selected}
-            isSelected={selectedFont === font}
-            onSelect={() => {
-              onSelect(font as Font);
-            }}
-          >
-            Aa
-          </AppRadioInput>
-        ))}
+      <div className={styles.inputAndErrorWrapper}>
+        <div
+          className={styles.inputWrapper}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? errorTextId : undefined}
+        >
+          {Object.entries(fontsMap).map(([font, settings]) => (
+            <AppRadioInput
+              key={font}
+              label={settings.label}
+              id={font}
+              contentClassName={clsx(styles.option, settings.className)}
+              selectedContentClassName={styles.selected}
+              isSelected={selectedFont === font}
+              onSelect={() => {
+                onSelect(font as Font);
+              }}
+            >
+              Aa
+            </AppRadioInput>
+          ))}
+        </div>
+        <AppErrorText id={errorTextId} text={error} />
       </div>
     </div>
   );

@@ -1,0 +1,8 @@
+@use "../../../styles/theme/colors.scss";
+@use "../../../styles/theme/typography.scss";
+
+.errorText {
+  @include typography.small-text;
+  color: colors.$error;
+  margin-top: 5px;
+}

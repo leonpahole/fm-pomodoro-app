@@ -3,6 +3,7 @@ import clsx from "clsx";
 import styles from "./AppNumberInput.module.scss";
 import UpButton from "../../../public/icon-arrow-up.svg";
 import DownButton from "../../../public/icon-arrow-down.svg";
+import { AppErrorText } from "../AppErrorText/AppErrorText";
 
 interface IProps {
   id: string;
@@ -10,6 +11,7 @@ interface IProps {
   className?: string;
   value: number;
   onChange(value: number): void;
+  error?: string;
 }
 
 export const AppNumberInput = ({
@@ -18,6 +20,7 @@ export const AppNumberInput = ({
   className,
   value,
   onChange,
+  error,
 }: IProps) => {
   const onArrowClick = (direction: -1 | 1) => {
     onChange(value + direction);
@@ -33,6 +36,8 @@ export const AppNumberInput = ({
     onChange(num);
   };
 
+  const errorTextId = `${id}-error`;
+
   return (
     <label htmlFor={id} className={clsx(styles.label, className)}>
       <span className={styles.labelText}>{label}</span>
@@ -43,6 +48,8 @@ export const AppNumberInput = ({
           className={styles.input}
           value={value}
           onChange={(e) => onStrValueChange(e.target.value)}
+          aria-invalid={error ? "true" : undefined}
+          aria-describedby={error ? errorTextId : undefined}
         />
         <div className={styles.arrowsWrapper}>
           <button
@@ -67,6 +74,7 @@ export const AppNumberInput = ({
           </button>
         </div>
       </div>
+      <AppErrorText id={errorTextId} text={error} />
     </label>
   );
 };

@@ -7,6 +7,7 @@ interface ColorThemeColors {
   light: string;
   lightGrey: string;
   dark: string;
+  error: string;
 
   themeRed: string;
   themeBlue: string;
@@ -21,13 +22,18 @@ const SharedColors: Omit<ColorThemeColors, "primary"> = {
   light: "#eff1fa",
   lightGrey: "#e3e1e1",
   dark: "#161932",
+  error: "#ff3333",
 
   themeRed: "#F87070",
   themeBlue: "#70F3F8",
   themePurple: "#D881F8",
 };
 
-export type ColorTheme = "red" | "blue" | "purple";
+export enum ColorTheme {
+  RED = "red",
+  BLUE = "blue",
+  PURPLE = "purple",
+}
 
 const ColorsThemeColorsMap: Record<ColorTheme, ColorThemeColors> = {
   red: {
